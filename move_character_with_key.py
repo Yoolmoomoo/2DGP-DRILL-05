@@ -73,7 +73,7 @@ flip = ' '
 
 while running:
     clear_canvas()
-    school.draw(800 // 2, 600 // 3)
+    school.draw(x, y)
     handle_events()
     decide_frame()
     check_collision()
