@@ -93,6 +93,5 @@ while running:
     decide_frame()
     check_collision()
     render()
-
 close_canvas()
 
