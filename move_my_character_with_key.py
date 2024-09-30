@@ -38,18 +38,31 @@ def render():
     delay(0.04)
 
 def check_collision():
-    global x, y, dir_x, dir_y
+    global x, y, dir_x, dir_y, map_x, map_y
     x += dir_x * 10
     y += dir_y * 10
     if 30 > x:
         x = 30
+        map_x -= dir_x * 10 # 240?
+        if map_x > 640:
+            map_x = 640
     elif x > 780:
         x = 780
+        map_x -= dir_x * 10
+        if map_x < 160:
+            map_x = 160
 
     if 45 > y:
         y = 45
+        map_y -= dir_y * 10
+        if map_y > (1024 - 512):
+            map_y = (1024 - 512)
+
     elif y > 550:
         y = 550
+        map_y -= dir_y * 10
+        if map_y < 90:
+            map_y = 90
 
 def decide_frame():
     global flip, dir_x, dir_y, frame, x, y
@@ -70,10 +83,12 @@ frame = 0
 dir_x = 0
 dir_y = 0
 flip = ' '
+map_x = 800  // 2
+map_y = 600 // 2
 
 while running:
     clear_canvas()
-    school.draw(x, y)
+    school.draw(map_x, map_y)
     handle_events()
     decide_frame()
     check_collision()
